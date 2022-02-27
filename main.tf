@@ -11,3 +11,7 @@ provider "google" {
   project = var.project
   region  = var.region
 }
+
+resource "random_id" "random" {
+  byte_length = 4
+}

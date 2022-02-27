@@ -1,5 +1,5 @@
 resource "google_service_account" "service_account" {
-  account_id   = "${local.prefix}-service-account"
+  account_id   = "${var.name}-sa"
   display_name = "Vault Server Service Account"
 }
 

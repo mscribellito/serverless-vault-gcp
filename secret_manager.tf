@@ -28,7 +28,7 @@ locals {
 }
 
 resource "google_secret_manager_secret" "vault_config" {
-  secret_id = "${local.prefix}-config"
+  secret_id = "${var.name}-config"
   replication {
     user_managed {
       replicas {

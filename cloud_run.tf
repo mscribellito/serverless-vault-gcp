@@ -1,5 +1,5 @@
 resource "google_cloud_run_service" "vault_service" {
-  name     = "${local.prefix}-service"
+  name     = "${var.name}-server"
   location = var.region
 
   traffic {
@@ -10,7 +10,7 @@ resource "google_cloud_run_service" "vault_service" {
   template {
     spec {
       containers {
-        image = "gcr.io/${var.project}/vault:latest"
+        image = "gcr.io/${var.project}/${var.image}"
         args  = ["server"]
         env {
           name = "VAULT_LOCAL_CONFIG"

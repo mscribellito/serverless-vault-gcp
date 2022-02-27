@@ -20,6 +20,18 @@ variable "apis_services" {
   ]
 }
 
+variable "name" {
+  type        = string
+  description = "Value to prefix resources with."
+  default     = "vault"
+}
+
+variable "image" {
+  type        = string
+  description = "Vault image to deploy."
+  default     = "vault:latest"
+}
+
 variable "vault_log_level" {
   type        = string
   description = "Specifies the log level to use."
@@ -33,7 +45,6 @@ variable "vault_ui" {
 }
 
 locals {
-  prefix = "sls-vault"
   service_env_vars = [
     {
       name  = "SKIP_SETCAP"
