@@ -1,13 +1,16 @@
 # serverless-vault-gcp
 
-Serverless Vault deployment on GCP.
+Serverless [HashiCorp Vault](https://www.vaultproject.io/) deployment on Google Cloud using Cloud Run, Cloud Storage, Cloud KMS, Secret Manager & Logging.
+
+![Serverless Vault Architecture](serverless-vault.png)
 
 ## Prequisites
 
-* [Google Cloud](https://cloud.google.com/)
+* [Google Cloud](https://cloud.google.com/) project
 * [gcloud](https://cloud.google.com/sdk/docs/install)
 * [Docker](https://www.docker.com/products/docker-desktop)
 * [Terraform](https://www.terraform.io/downloads)
+* [Vault](https://www.vaultproject.io/downloads)
 
 ## Deployment
 
