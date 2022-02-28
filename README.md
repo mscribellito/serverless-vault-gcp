@@ -18,24 +18,24 @@ Serverless [HashiCorp Vault](https://www.vaultproject.io/) deployment on Google 
 
 ## Deployment
 
-Enable `containerregistry.googleapis.com` API in your GCP project and run the below commands to set gcloud project and environment variable:
+Enable `artifactregistry.googleapis.com` API in your GCP project and run the below commands to set gcloud project and environment variable:
 
 ```
 gcloud config set project <your-project>
 PROJECT_ID=$(gcloud config get-value project)
 ```
 
-### Push Vault Image to Container Registry
+### Push Vault Image to Artifact Registry
 
-Cloud Run can deploy container images from either Container Registry or Artifact Registry. This project uses Container Registry. You can read more about [pushing and pulling images](https://cloud.google.com/container-registry/docs/pushing-and-pulling) in the Google documentation.
+Cloud Run can deploy container images from either Container Registry or Artifact Registry. This project uses Artifact Registry. You can read more about [pushing images](https://cloud.google.com/artifact-registry/docs/docker/pushing-and-pulling#pushing) in the Google documentation.
 
-Pull the [HashiCorp Vault image](https://hub.docker.com/_/vault) from Docker Hub and push to Google Container Registry:
+Pull the [HashiCorp Vault image](https://hub.docker.com/_/vault) from Docker Hub and push to Artifact Registry:
 
 ```
 VAULT_VERSION=1.9.3
 docker pull amd64/vault:$VAULT_VERSION
-docker tag amd64/vault:$VAULT_VERSION gcr.io/$PROJECT_ID/vault:$VAULT_VERSION
-docker push gcr.io/$PROJECT_ID/vault:$VAULT_VERSION
+docker tag amd64/vault:$VAULT_VERSION <location>-docker.pkg.dev/$PROJECT_ID/<repository>/vault:$VAULT_VERSION
+docker push <location>-docker.pkg.dev/$PROJECT_ID/<repository>/vault:$VAULT_VERSION
 ```
 
 ### Deploy Vault Infrastructure with Terraform
