@@ -2,6 +2,10 @@
 
 Serverless [HashiCorp Vault](https://www.vaultproject.io/) deployment on Google Cloud using Cloud Run, Cloud Storage, Cloud KMS, Secret Manager & Logging.
 
+[What is Vault?](https://www.vaultproject.io/docs/what-is-vault) Vault secures, stores, and tightly controls access to tokens, passwords, certificates, API keys, and other secrets in modern computing.
+
+In this POC, Vault is served from Cloud Run and leverages [Cloud Storage](https://cloud.google.com/storage) for storage, [Cloud KMS](https://cloud.google.com/security-key-management) for seal/unseal, [Secret Manager](https://cloud.google.com/secret-manager) for configuration and [Cloud Logging](https://cloud.google.com/logging) for audit.
+
 ![Serverless Vault Architecture](serverless-vault.png)
 
 ## Prequisites
@@ -14,7 +18,10 @@ Serverless [HashiCorp Vault](https://www.vaultproject.io/) deployment on Google 
 
 ## Security Concerns
 
-* Vault Server is publicly accessible. This **is not a best practice**. https://cloud.google.com/run/docs/securing/ingress
+Vault Server is publicly accessible. **This is not a best practice and not recommended for production**. Access to Vault [should be restricted](https://cloud.google.com/run/docs/securing/ingress):
+
+* [Connecting Cloud Run to a VPC network](https://cloud.google.com/run/docs/configuring/connecting-vpc)
+* [Enabling IAP for Cloud Run](https://cloud.google.com/iap/docs/enabling-cloud-run)
 
 ## Deployment
 
@@ -98,6 +105,8 @@ Set the `VAULT_ADDR` environment variable and check the status using `vault`:
 export VAULT_ADDR=${SERVICE_URL}
 vault status
 ```
+
+Vault is now operational.
 
 ## Contributing
 
